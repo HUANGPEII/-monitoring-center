@@ -137,7 +137,8 @@
 	margin-top: 0;
 }
 .center_box .c_title .l_bar {
-	width: 200px;
+/* 	width: 200px; */
+	width: 30%;
     height: 10px;
     margin-left: 35px;
     margin-top: 10px;
@@ -149,7 +150,8 @@
     background: linear-gradient(to right, #0f1d42,#2a95e3);
 }
 .center_box .c_title .r_bar {
-	width: 200px;
+/* 	width: 200px; */
+	width: 30%;
     height: 10px;
     margin-right: 35px;
     margin-top: 10px;
@@ -230,7 +232,7 @@ tr:hover {
 .alarm_message {
 	text-align: center;
 	color: #92b2c9;
-	fot-size: 16px;
+	font-size: 16px;
 }
 .r_title2 ul {
 	margin-top: 10px;
