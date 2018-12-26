@@ -7,21 +7,14 @@
 	    html {
 	    	font-size: 16px;
 	    }
-	    body{
-		width: 100%;
-		height: 38.75rem;
-		padding: 0;
-		margin: 0;
-	    }
-	    .container {
-		width: 100%;
-		height: 100%;
-		border: 1px solid #000;
-		/* overflow: hidden; */
-		background: url("../imgs/beijing.jpg") no-repeat;
-		background-size: 100% 100% ;				
-	   }
+		body{
+			width: 100%;
+			height: 38.75rem;
+			padding: 0;
+			margin: 0;
+		}
 	</style>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="../css/base.css">
 	<link rel="stylesheet" href="../css/index.css">
 	<script src="../lib/echarts.js"></script>
@@ -30,7 +23,7 @@
 </head>
 <body>
 	<!-- echarts1的script -->
-			<script>
+	<script>
 				function Charts1(){
 					// 基于准备好的dom，初始化echarts实例
 				        var myChart = echarts.init(document.getElementById('main0'));
@@ -172,22 +165,22 @@
 				        myChart.setOption(option);
 						
 				}
-		    </script>
-<!-- 地图的script <-->
-	  <script>
-		     function Map(){
-			     $(function(){
-		        //使用echarts.init()方法初始化一个Echarts实例，在init方法中传入echarts map的容器 dom对象
-					      var mapChart = echarts.init(document.getElementById('main1')); 
-					    // mapChart的配置
-					      var option = {
-					        backgroundColor:'#08111a',
-				            title:{
-					        text: '陕西各区示意图',
-					        textStyle:{
+	</script>
+    <!-- 地图的script <-->
+	<script>
+		function Map(){
+			   $(function(){
+		         //使用echarts.init()方法初始化一个Echarts实例，在init方法中传入echarts map的容器 dom对象
+			   var mapChart = echarts.init(document.getElementById('main1')); 
+					// mapChart的配置
+					  var option = {
+					    backgroundColor:'#08111a',
+				        title:{
+					    text: '陕西各区示意图',
+					    textStyle:{
 					        	color:'#0574c6'
 					        },
-					        padding: [
+					    padding: [
 			                    40,
 			                    610,
 			                    545,
@@ -195,28 +188,28 @@
 					        ],
 					        left:''
 					        },
-					        bmap: {
-					        	roam:true
+					    bmap: {
+					        roam:true
 					        },   			
 			    		     toolbox: {
 				              show: true,
 				              orient: 'vertical',
 				              left: 'right',
 				              top: 'center',
-				           feature: {
+				        feature: {
 				               dataView: {readOnly: false},
 				               restore: {},
 				               saveAsImage: {}
 				            }
 			    		     },
-			    		     visualMap: {
-					            min: 0,
-					            max: 2000,
-					            text:['高','低'],
-					            realtime: false,
-					            calculable: true,
-					            inRange: {
-					                color: ['#1C86EE','#1874CD', '#104E8B','#104E8B']
+			    		visualMap: {
+					        min: 0,
+					        max: 2000,
+					        text:['高','低'],
+					        realtime: false,
+					        calculable: true,
+					        inRange: {
+					         color: ['#1C86EE','#1874CD', '#104E8B','#104E8B']
 					            }
 			   			     },
 			    		     series:[
@@ -247,10 +240,10 @@
 			    		     ]
 					       };
 		        //设置图表的配置项
-		        mapChart.setOption(option);
+		  mapChart.setOption(option);
 		       })
 		     }
-		 </script>
+	</script>
     <!-- charts2的script -->
     <script>
     	function Charts2(){
@@ -345,7 +338,7 @@
 					    {
 					        top: '5%',
 					        width: 250,
-					        bottom: '5%',
+					        bottom: '6%',
 					        left:'0%',
 					        containLabel: true
 					    }
@@ -427,9 +420,9 @@
     </script>
     <!-- <script src="../js/shanxi.js"></script> -->
 	<div class="container clearfix">
-		<div class="left_box fl">
+	   <div class="left_box fl">
 			<div class="Band_usage clearfix">
-				<div class="clearfix">
+				<div class=" box clearfix">
 					<div class="l_title1 fr">车流量</div>
 					<!-- <div class="usages1 fl">
 						<span>北京&nbsp;至&nbsp;北美总分社</span>
@@ -448,7 +441,7 @@
 					<!-- <table id="tab1" width="100%" cellspacing="0"> -->
 			        <tr>
 				    <td>
-					 <div id="main0" style="width: 300px;height:155px;">
+					 <div id="main0" style="width: 100%;height:95%;">
 						<script type="text/javascript">
 							Charts1();
 						</script>
@@ -459,15 +452,16 @@
 				</div>
 		    </div>
 			<div class="Time_Delay">
-					<div id="echart2">
-						<div class="clearfix">
+				        <div class=" box clearfix">
 					    <div class="l_title1 fr">收费</div>
 					    </div>
-						<div id="main" style="width: 300px;height:180px;border=0px;">
+			   <div id="echart2">
+						
+						<div id="main" style="width: width: 100%;height:95%;;border=0px;">
 		                <!-- <table id="tab1" width="100%" cellspacing="0"> -->
 			             <tr>
 				         <td>
-					    <div id="main2" style="width: 300px;height:155px;">
+					    <div id="main2" style="width: 100%;height:95%;">
 						<script type="text/javascript">
 							Charts2();
 						</script>
@@ -476,18 +470,19 @@
 			             </tr>
 		              <!-- </table> -->
 	                  </div>
-					</div>
+			   </div>
 			</div>
 			<div class="Packet_Loss">
+				   <div class=" box clearfix">
+					  <div class="l_title1 fr">道路能见度</div>
+				</div>
 				<div id="echart3">
-					<div class="clearfix">
-					   <div class="l_title1 fr">道路能见度</div>
-					</div>
-					<div id="main" style="width: 300px;height:180px;border=0px;">
+					<!-- width: 300px;height:180px;border=0px; -->
+					<div id="main" style="width: 100%;height:95%;border=0px;">
 		         <!--<table id="tab1" width="100%" cellspacing="0">-->
 			        <tr>
 				    <td>
-					<div id="main3" style="width: 300px;height:155px;">
+					<div id="main3" style="width: 100%;height:95%;">
 						<script type="text/javascript">
 							Charts3();
 						</script>
@@ -495,45 +490,36 @@
 				    </td>
 			        </tr>
 		        <!--</table>-->
-	    </div>
-	  </div>
-	  </div>
-	 </div>
-	 <div class="center_box fl">
-						<div class="c_title clearfix">
-							<div class="l_bar fl">
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
-							</div>
-							<div id="showTime" class="fl">
-								<div id="timeShow"></div>
-								<div id="dateShow"></div>
-							</div>
-							<div class="r_bar fr"></div>	
-						</div>
-						<div id="main" style="width: 672px;height:622px;color:tansparent;border=0px;">
-							<!-- <table id="tab1" width="100%" cellspacing="0"> -->
-							<tr>
-							<td>
-							<div id="main1" style="width: 671px;height:585px;opacity:0.8">
-							<script type="text/javascript">
+	            </div>
+	        </div>
+	        </div>
+	   </div>
+	   <div class="center_box fl">
+		  <div class="c_title clearfix">
+		      <div class="l_bar fl"></div>
+			  <div id="showTime" class="fl">
+					<div id="timeShow"></div>
+					<div id="dateShow"></div>
+			  </div>
+			  <div class="r_bar fr"></div>	
+		  </div>
+		  <!-- <div id="main" style="width: 672px;height:622px;color:tansparent;border=0px;"> -->
+			   <!-- <table id="tab1" width="100%" cellspacing="0"> -->
+			   <tr>
+			   <td>
+			   <div id="main1" style="width: 100%;height:94%;opacity:0.8">
+			   <script type="text/javascript">
 								Map();
-							</script>
-							</div>
-							</td>
-							</tr>
-							<!-- </table> -->
-						</div>		
-		</div>
-	 <div class="right_box fl">
-			<div class="r_title">全省各干道运行情况</div>
-			<div class="r_table">
+			   </script>
+			   </div>
+			   </td>
+			   </tr>
+			   <!-- </table> -->
+		  <!-- </div>	   -->
+	   </div>
+	   <div class="right_box fl">
+		 <div class="r_title">全省各干道运行情况</div>
+		 <div class="r_table">
 				<table cellspacing="10" border="1">
 					<thead>
 						<th>分社</th>
@@ -545,7 +531,7 @@
 					<!-- <tbody id="tbody"></tbody> -->
 				</table>
 		 </div>
-			<div class="r_title2">
+		 <div class="r_title2">
 				<div class="alarm_message">
 					今日告警信息
 				</div>
@@ -557,11 +543,11 @@
 					<li>北京至开罗毕链路07点05分中断，07点07分恢复</li>
 					<li>北京至开罗毕链路07点05分中断，07点07分恢复</li>
 				</ul>
-			</div>
-	 </div>
+		 </div>
+	   </div>
     </div>
     <!-- 右侧表格 -->
-  <script>
+    <script>
 		  var list=['北京至内罗毕链路02点54分中断，03点05分恢复',
 				  '北京至香港毕链路05点12分中断',
 				  '北京至开罗毕链路07点05分中断，07点07分恢复',
@@ -586,7 +572,7 @@
                 list[list.length-1]=info;
                 addList(list,ul)
             }, 2000)
- </script>
+    </script>
 	<!-- 显示时间 -->
 	<script>
 		var t = null;
@@ -623,8 +609,8 @@
 			var tbody=document.querySelector(".right_box table tbody");
 		 console.log(tbody);
 		 if(tbody){
-	   table.removeChild(tbody);
-	  };
+	    table.removeChild(tbody);
+	    };
 			var str = "[{'分社':'香港','带宽':'45M','时延1':'31ms','丢包率':'0.39%','时延2':'31ms'},{'分社':'香港','带宽':'45M','时延1':'31ms','丢包率':'0.39%','时延2':'31ms'},{'分社':'香港','带宽':'45M','时延1':'31ms','丢包率':'0.39%','时延2':'31ms'},{'分社':'香港','带宽':'45M','时延1':'31ms','丢包率':'0.39%','时延2':'31ms'},{'分社':'香港','带宽':'45M','时延1':'31ms','丢包率':'0.39%','时延2':'31ms'},{'分社':'香港','带宽':'45M','时延1':'31ms','丢包率':'0.39%','时延2':'31ms'},{'分社':'香港','带宽':'45M','时延1':'31ms','丢包率':'0.39%','时延2':'31ms'},{'分社':'香港','带宽':'45M','时延1':'31ms','丢包率':'0.39%','时延2':'31ms'},{'分社':'香港','带宽':'45M','时延1':'31ms','丢包率':'0.39%','时延2':'31ms'},{'分社':'香港','带宽':'45M','时延1':'31ms','丢包率':'0.39%','时延2':'31ms'}]";
 			var jsonObject=eval('('+str+')');
 			console.log(jsonObject);
@@ -656,7 +642,7 @@
 				i=0;
 				j=8;
 			}
-   console.log(i,j);
+            console.log(i,j);
 		}
 	</script>
 </body>
