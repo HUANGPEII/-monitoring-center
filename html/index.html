@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title></title>
+	<title>监控中心</title>
 	<style>
 	    html {
 	    	font-size: 16px;
@@ -76,9 +76,10 @@
 				    
 				    grid: [{
 				        top: '5%',
-				        width: '85%',
+				        width: '85%' ,
 				        bottom: '6%',
 				        left: '5% ',
+				        // right: '5%',
 				        containLabel: true
 				    }
 				    ],
@@ -166,6 +167,157 @@
 						
 				}
 	</script>
+	<!-- 将echarts1中的内容放大显示 -->
+	<script>
+				function Charts01(){
+					// 基于准备好的dom，初始化echarts实例
+				        var myChart = echarts.init(document.getElementById('main01'));
+
+						var builderJson = {
+							   "all": 10887,
+							    "charts": {
+							    "map": 3237,
+							    "lines": 2164,
+							    "bar": 7561,
+							    "line": 7778,
+							    "pie": 7355,
+							    "scatter": 2405,
+							    "candlestick": 1842,
+				  },
+				  "ie": 9743
+				  };
+				 option = {
+				    backgroundColor:'#0a1420',
+				    tooltip: {},
+				     toolbox: {
+				
+		        show: true,
+				 orient:'vertical',
+				 y:'center',
+		        feature: {
+		            dataView: {readOnly: false},
+		            magicType: {type: ['bar', 'line']},
+		            restore: {},
+		            saveAsImage: {},
+					
+		         }
+			      } ,
+		        axisLine: {
+		                    lineStyle: {
+		                        type: 'solid',
+		                        color: '#fff',//左边线的颜色
+		                        width:'2'//坐标线的宽度
+		                    }
+		                },
+
+				    title: [{
+				        // text: '在线构建',
+				        x: '50%',
+				        y:'2%',
+				        textAlign: 'center'
+				    }
+				    ],
+				    
+				    
+				    grid: [{
+				        top: '5%',
+				        width: '85%' ,
+				        bottom: '6%',
+				        left: '5% ',
+				        // right: '5%',
+				        containLabel: true
+				    }
+				    ],
+				    
+				     xAxis: [{	
+				        type: 'category',
+				        data: Object.keys(builderJson.charts),
+				        axisLabel: {
+							textStyle:
+							{color:'white'},
+				            interval: 0,
+				            rotate: -30
+				        },
+				        axisLine: {
+		                    lineStyle: {
+		                        type: 'solid',
+		                        color: '#fff',//左边线的颜色
+		                        width:'2'//坐标线的宽度
+		                    }
+		                },
+				        splitLine: {
+				            show: false
+				        },
+						axisTick:{
+						show:true
+						}
+				    }, 
+				    ],
+				    yAxis: [{
+						scale:true,
+				        type: 'value',
+				        max: builderJson.all,
+				        axisLine: {
+		                    lineStyle: {
+		                        type: 'solid',
+		                        color: '#fff',//左边线的颜色
+		                        width:'2'//坐标线的宽度
+		                    }
+		                },				
+						axisLabel: {
+							textStyle:
+							{color:'white'},
+				            interval: 0,
+				            rotate: 0
+				        },
+						
+				        splitLine: {
+				            show: false
+				        }
+				    }],		
+				    series: [{
+				        type: 'bar',
+				        stack: 'chart',
+				        z: 3,
+				        itemStyle: {
+		                   color: '#3e93b2'
+				        },
+				        label: {
+				            normal: {
+								// color:'blue',
+				                position: 'top',
+				                show: true
+				            }
+				        },
+				        data: Object.keys(builderJson.charts).map(function (key) {
+				            return builderJson.charts[key];
+				        })
+				    }, {
+				        type: 'bar',
+				        stack: 'chart',
+				        silent: true,
+				        itemStyle: {
+				        	// color: '#3992b2',
+				            normal: {
+				                color: ['#eee']
+				            }
+				        },
+				        data: Object.keys(builderJson.charts).map(function (key) {
+				            return builderJson.all - builderJson.charts[key];
+				        })
+				    }, 
+				    ]
+				};
+				        myChart.setOption(option);
+						
+				}
+	</script>
+	<!-- <script>
+		var Band_usage = document.getElementsByClassName('Band_usage').childNodes;
+		console.log('Band_usage');
+		var enlarge1 = document.getElementById('enlarge1');
+		// enlarge1.appendChild("echart1");
+	</script> -->
     <!-- 地图的script <-->
 	<script>
 		function Map(){
@@ -249,6 +401,58 @@
     	function Charts2(){
 	    // 基于准备好的dom，初始化echarts实例
 		        var myChart = echarts.init(document.getElementById('main2'));
+
+						var builderJson = {
+							"all": 10887
+						};
+						
+						var downloadJson = {
+						"dark.js": 1594,
+						"infographic.js": 925,
+						"shine.js": 1608,
+						"roma.js": 721,
+						"macarons.js": 2179,
+						"vintage.js": 1982,
+						};
+
+				 option = {
+				    backgroundColor:'#0a1420',
+				    tooltip: {},
+				    
+				    title: [
+				    {
+				        // text: '各版本下载',
+						color:'white',
+				        subtext: '总计 ' + Object.keys(downloadJson).reduce(function (all, key) {
+				            return all + downloadJson[key];
+				        }, 0),
+				        x: '50%',
+				        y:'33%',
+				        textAlign: 'center'
+				    }  
+				    ],
+				    series: [    
+					 {
+				        type: 'pie',
+				        radius: [0, '60%'], 
+				        center: ['50%', '50%'],
+				        data: Object.keys(downloadJson).map(function (key) {
+				            return {
+				                name: key.replace('.js', ''),
+				                value: downloadJson[key]
+				            }
+				        })
+					 }]
+				  };
+				        myChart.setOption(option);
+						
+		   }
+    </script>
+    <!-- charts2的放大 -->
+    <script>
+    	function Charts02(){
+	    // 基于准备好的dom，初始化echarts实例
+		        var myChart = echarts.init(document.getElementById('main02'));
 
 						var builderJson = {
 							"all": 10887
@@ -418,6 +622,128 @@
 				
 		   }
     </script>
+    <!-- charts3的放大 -->
+    <script>
+        function Charts03(){
+         // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('main03'));
+                            var builderJson = {
+                              "all": 10887, 
+                              "heamins": {
+                               "geo": 2788,
+                                "title": 9575,
+                                "legend": 9400,
+                                "tooltip": 9466,
+                                "grid": 9266,           
+                         },
+                         "ie": 9743
+                      };
+                    option = {
+                        backgroundColor:'#0a1420',
+                        tooltip: {},
+                        toolbox: {
+                            show: true,
+                            orient:'vertical',
+                            y:'center',
+                        feature: {
+                                dataView: {readOnly: false},
+                                magicType: {type: ['bar', 'line']},
+                                restore: {},
+                                saveAsImage: {},        
+                    }
+                    } ,
+                    title: [
+                        {
+                            // text: '在线构建', 
+                            x: '50%',
+                            y:'67%',
+                            textAlign: 'center'
+                        }
+                        ], 
+                    grid: [
+                        {
+                            top: '5%',
+                            width: '85%',
+                            bottom: '6%',
+                            left:'0%',
+                            containLabel: true
+                        }
+                        ],
+             xAxis: [
+            {               
+                type: 'category',
+                data: Object.keys(builderJson.heamins),
+                axisLine: {
+                    lineStyle: {
+                        type: 'solid',
+                        color: '#fff',//左边线的颜色
+                        width:'2'//坐标线的宽度
+                    }
+                },
+                axisLabel: {
+                            textStyle:
+                                {color:'white'},
+                                interval: 0,
+                                rotate: -30
+                            },
+                            splitLine: {
+                                show: false
+                            }
+                        }
+                        ],
+            yAxis: [
+               {
+                type: 'value',
+                max: builderJson.all,
+                axisLine: {
+                    lineStyle: {
+                        type: 'solid',
+                        color: '#fff',//左边线的颜色
+                        width:'2'//坐标线的宽度
+                    }
+                },
+                            axisLabel: {
+                                textStyle:
+                                {color:'white'},
+                                interval: 0,
+                                rotate: 0
+                            },
+                            splitLine: {
+                                show: false
+                            }
+                        }],     
+            series: [
+               {
+                type: 'line',
+                stack: 'heamin',
+                // xAxisIndex: 1,
+                // yAxisIndex: 1,
+                z: 3,
+                lineStyle: {
+                    color: '#3e93b2',
+                },
+                itemStyle: {
+                    color: '#3e93b2',
+                },
+                areaStyle: {
+                                color:'#63B8FF'
+                                },
+                                label: {
+                                    normal: {
+                                        position: 'top',
+                                        show: true
+                                    }
+                                },
+                data: Object.keys(builderJson.heamins).map(function (key) {
+                    return builderJson.heamins[key];
+                })
+                }
+            ]
+                };
+                myChart.setOption(option);
+                
+           }
+    </script>
     <!-- <script src="../js/shanxi.js"></script> -->
 	<div class="container clearfix">
 	   <div class="left_box fl">
@@ -450,48 +776,82 @@
 			        </tr>
 			    <!-- </table> -->
 				</div>
-		    </div>
-			<div class="Time_Delay">
-				        <div class=" box clearfix">
-					    <div class="l_title1 fr">收费</div>
-					    </div>
-			   <div id="echart2">
-						
-						<div id="main" style="width: width: 100%;height:95%;;border=0px;">
-		                <!-- <table id="tab1" width="100%" cellspacing="0"> -->
-			             <tr>
-				         <td>
-					    <div id="main2" style="width: 100%;height:95%;">
-						<script type="text/javascript">
-							Charts2();
-						</script>
-					    </div>
-				         </td>
-			             </tr>
-		              <!-- </table> -->
-	                  </div>
-			   </div>
-			</div>
-			<div class="Packet_Loss">
-				   <div class=" box clearfix">
-					  <div class="l_title1 fr">道路能见度</div>
-				</div>
-				<div id="echart3">
-					<!-- width: 300px;height:180px;border=0px; -->
-					<div id="main" style="width: 100%;height:95%;border=0px;">
-		         <!--<table id="tab1" width="100%" cellspacing="0">-->
-			        <tr>
+				<div id="enlarge1">
+					<tr>
 				    <td>
-					<div id="main3" style="width: 100%;height:95%;">
+					<div id="main01" style="width: 600px;height:400px;">
 						<script type="text/javascript">
-							Charts3();
+							Charts01();
 						</script>
 					</div>
 				    </td>
 			        </tr>
-		        <!--</table>-->
+				</div>
+		    </div>
+			<div class="Time_Delay">
+				<div class=" box clearfix">
+			       <div class="l_title1 fr">收费</div>
+				</div>
+			    <div id="echart2">
+					<div id="main" style="width: width: 100%;height:95%;;border=0px;">
+			             <tr>
+				         <td>
+					  <div id="main2" style="width: 100%;height:95%;">
+						  <script type="text/javascript">
+							Charts2();
+						  </script>
+					  </div>
+				         </td>
+			             </tr>
+	                </div>
+			    </div>
+			    <div id="enlarge2">
+			        <div id="main" style="width: width: 100%;height:95%;;border=0px;">
+			             <tr>
+				         <td>
+					    <div id="main02" style="width: 600px;height:400px;">
+						  <script type="text/javascript">
+							Charts02();
+						  </script>
+					    </div>
+				         </td>
+			             </tr>
+			        </div>
+			    </div>  
+            </div>
+			<div class="Packet_Loss">
+				<div class=" box clearfix">
+					<div class="l_title1 fr">道路能见度</div>
+				</div>
+				<div id="echart3">
+					<!-- width: 300px;height:180px;border=0px; -->
+				  <div id="main" style="width: 100%;height:95%;border=0px;">
+		             <!--<table id="tab1" width="100%" cellspacing="0">-->
+			         <tr>
+				     <td>
+					 <div id="main3" style="width: 100%;height:95%;">
+						<script type="text/javascript">
+							Charts3();
+						</script>
+					 </div>
+				     </td>
+			         </tr>
+		          <!--</table>-->
+	              </div>
 	            </div>
-	        </div>
+                <div id="enlarge3">
+                    <div id="main" style="width: width: 100%;height:95%;;border=0px;">
+                         <tr>
+                         <td>
+                        <div id="main03" style="width: 600px;height:380px;">
+                          <script type="text/javascript">
+                            Charts03();
+                          </script>
+                        </div>
+                         </td>
+                         </tr>
+                    </div>
+                </div>  
 	        </div>
 	   </div>
 	   <div class="center_box fl">
@@ -603,7 +963,7 @@
 	<!-- 动态更新表格 -->
 	<script>
 		var table=document.querySelector(".right_box table");
-		console.log(table);
+		// console.log(table);
 		var j=8,i=0;
 		function data(){
 			var tbody=document.querySelector(".right_box table tbody");
@@ -613,7 +973,7 @@
 	    };
 			var str = "[{'分社':'香港','带宽':'45M','时延1':'31ms','丢包率':'0.39%','时延2':'31ms'},{'分社':'香港','带宽':'45M','时延1':'31ms','丢包率':'0.39%','时延2':'31ms'},{'分社':'香港','带宽':'45M','时延1':'31ms','丢包率':'0.39%','时延2':'31ms'},{'分社':'香港','带宽':'45M','时延1':'31ms','丢包率':'0.39%','时延2':'31ms'},{'分社':'香港','带宽':'45M','时延1':'31ms','丢包率':'0.39%','时延2':'31ms'},{'分社':'香港','带宽':'45M','时延1':'31ms','丢包率':'0.39%','时延2':'31ms'},{'分社':'香港','带宽':'45M','时延1':'31ms','丢包率':'0.39%','时延2':'31ms'},{'分社':'香港','带宽':'45M','时延1':'31ms','丢包率':'0.39%','时延2':'31ms'},{'分社':'香港','带宽':'45M','时延1':'31ms','丢包率':'0.39%','时延2':'31ms'},{'分社':'香港','带宽':'45M','时延1':'31ms','丢包率':'0.39%','时延2':'31ms'}]";
 			var jsonObject=eval('('+str+')');
-			console.log(jsonObject);
+			// console.log(jsonObject);
 			var tbody=document.createElement("tbody");
 			for(i;i<j;i++){
                 var tr=document.createElement("tr");
