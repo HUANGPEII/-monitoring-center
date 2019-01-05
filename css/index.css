@@ -19,12 +19,17 @@
   /* height: 602px; */
   /* margin-left: 8px; */
   margin-top: 7px;
-  overflow: hidden;
+  /* overflow: hidden; */
+   z-index: 100;
   /* border: 1px solid red; */
+}
+.Band_usage {
+
 }
 .Band_usage ,.Time_Delay , .Packet_Loss{
   width: 97%;
   margin: 0 auto;
+  position: relative;
   /* height: 187px; */
   height: 30%;
   /* border: 1px solid yellow; */
@@ -54,6 +59,43 @@
 	/* margin-top: 0px; */
 	/* border: 1px solid yellow; */
 } 
+ #enlarge1 ,#enlarge2,#enlarge3 {
+    display: none;
+    /* visibility: hidden; */
+    width: 200%;
+    height: 200%;
+    /* opacity: 0; */
+}
+.Band_usage:hover #enlarge1  {
+	display: block;
+	/* visibility: visible; */
+	/* opacity: 1; */
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 2;
+	/* border: 1px solid #dedede; */
+}
+.Time_Delay:hover #enlarge2  {
+	display: block;
+	/* visibility: visible; */
+	/* opacity: 1; */
+	position: absolute;
+	left: 0;
+	top: -30%;
+	z-index: 2;
+	/* border: 1px solid #dedede; */
+}
+.Packet_Loss:hover #enlarge3  {
+	display: block;
+	/* visibility: visible; */
+	/* opacity: 1; */
+	position: absolute;
+	left: 0;
+	top: -100%;
+	z-index: 2;
+	/* border: 1px solid #dedede; */
+}
 #echart1 table {
 	margin-left: 12px;
 }
